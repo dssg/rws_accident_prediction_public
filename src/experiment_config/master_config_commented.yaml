@@ -1,0 +1,198 @@
+panel_config:
+  time_granularity: 60 # What is the granularity of prediction - the rounding?
+  segmentation_table: segmentation.ten_km #schema.table for the segmentation that you want to use.
+  weather_station_mapping_table: segmentation.ten_km_ws #the weather_station mapping to the new segmentation level.
+  time_lag_minutes: 0 #how much lag do you want between window of prediction and time of prediction.
+  sample_train: True # whether you want to sample Train
+  sample_val: True # whether you want to sample val - 'full' is also a sampling decision.
+  sample_test: True # whether you want to sample test
+  train_sample_method_params: # this defines the way you want sampling to be done. Parameters are passed to the Sampler method.
+    sampling_method: "random" #type of sampling
+    positive_perc: 0.05  # percentage of sampling required for accident.
+  val_sample_method_params:
+    sampling_method: "full" # this means you need to re-create full sample
+    positive_perc : 0.03 # this is not relevant in that case.
+  test_sample_method_params:
+    sampling_method: "full"
+    positive_perc: 0.04
+  validation_config: # all these are setting for the validation - temporal validation etc.
+    label_start: "2016-01-01" # Start of your entire training set
+    label_end: "2017-12-31" # end of your entire training set - this includes your vals
+    test_start: "2018-01-01" # the data which doesn't get used
+    test_end: "2018-01-31" # the data which doesn't get used
+    minimum_gap_size: # gap between train and val
+      months: 1  # if you want days you need to put that, this is converted in kwds for pd.offsets.DateOffset
+                 # so if you put days=2 you end up getting offset initiated by days=2
+    rolling_type: "window" #window v/s expanding validation
+    minimum_train_size:
+      years: 1 # size of training
+    minimum_val_size:
+      months: 1 # size  of val
+  random_seed: 42 # random seed to be used everywhere in the code
+  exp_remarks: "blah" # this is overwritten when you create_experiment
+
+classifier_config: # models you want to test
+  - RF
+  - ET
+  - AB
+  - XG
+  - LR
+  - KNN
+  - NB
+  - SVM
+  - GB
+  - DT
+  - SGD
+
+grid_config: # their respective parameters
+  RF:
+    n_estimators:
+      - 300
+      - 500
+    max_depth:
+      - 5
+      - 10
+      - 20
+    max_features:
+      - sqrt
+    min_samples_split:
+      - 10
+      - 100
+    n_jobs:
+      - -1
+  XG:
+    scale_pos_weight:
+      - 1
+      - 20
+    max_depth:
+      - 4
+      - 8
+      - 16
+    min_child_weight:
+      - 6
+      - 8
+    learning_rate:
+      - 0.1
+    n_estimators:
+      - 300
+      - 400
+      - 500
+    reg_alpha:
+      - 0.001
+      - 0.1
+  LR:
+    penalty:
+      - l1
+      - l2
+    C:
+      - 0.00001
+      - 0.001
+      - 0.1
+      - 1
+      - 10 
+  KNN:
+    n_neighbors:
+      - 1
+      - 5
+      - 10
+      - 25
+      - 50
+      - 100
+    weights:
+      - uniform
+      - distance
+    algorithm:
+      - auto
+      - ball_tree
+      - kd_tree
+  NB:
+  SGD:
+    loss:
+      - hinge
+      - log
+      - perceptron
+    penalty:
+      - l2
+      - l1
+      - elasticnet
+  ET:
+    n_estimators:
+      - 1
+      - 10
+      - 100
+      - 1000
+      - 10000
+    criterion:
+      - gini
+      - entropy
+    max_depth:
+      - 1
+      - 5
+      - 10
+      - 50
+      - 100
+    max_features:
+      - sqrt
+      - log2
+  AB:
+    algorithm:
+      - SAMME
+      - SAMME.R
+    n_estimators:
+      - 1
+      - 10
+      - 100
+      - 1000
+      - 10000
+  GB:
+    n_estimators:
+      - 1
+      - 10
+      - 100
+      - 1000
+      - 10000
+    learning_rate:
+      - 0.001
+      - 0.01
+      - 0.05
+      - 0.1
+      - 0.5
+    subsample:
+      - 0.1
+      - 0.5
+      - 1
+    max_depth:
+      - 1
+      - 3
+      - 5
+      - 10
+      - 20
+      - 50
+      - 100
+  DT:
+    criterion:
+      - gini
+      - entropy
+    max_depth:
+      - 1
+      - 5
+      - 10
+      - 20
+      - 50 
+      - 100
+    min_samples_split:
+      - 2
+      - 5
+      - 10
+  SVM:
+    C:
+      - 0.00001
+      - 0.0001
+      - 0.001
+      - 0.01
+      - 0.1
+      - 1
+      - 10
+    kernel:
+      - linear
+    

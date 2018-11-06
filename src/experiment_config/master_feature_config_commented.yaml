@@ -1,0 +1,47 @@
+features_knmi_config: # each of the feature groups has its own highlevel features_{name_feature_group}_config
+ table_name: features_knmi_agg.knmi_feature_master_v7 # the table that needs to be pulled
+ time_granularity_min: 60 # what's the time granularity in the table
+ use_all_features: False # do you want to use all features? if True, features_list is ignore and all features are pulled
+ meta_columns: # the non-feature related columns that exist in the table
+  - datetime
+  - weather_station
+ features_list: # list of features to be included if use_all_features is False.
+  - feature_temp_16_nanmax_num
+ 
+
+features_flow_config:
+ table_name: features_speedflow_agg.fifteenmin_seg_ten_km_v1
+ time_granularity_min: 15
+ space_granularity_km: 10
+ use_all_features: False
+ features_list:
+  - flow_totalxlanes_totalxseg_maxdiffx1hr_num
+ meta_columns:
+  - end_datetime
+  - hectokey_merged
+
+features_hectopunten_config:
+ table_name: features_hectopunten_agg.hectopunten_ten_km_v12
+ space_granularity_km: 10
+ use_all_features: True
+ meta_columns:
+  - hectokey_merged
+  - rollup_year
+  - weather_station
+
+features_ongevallen_config:
+ table_name: features_ongevallen_agg.ongevallen_feature_ten_km_thirty_min
+ time_granularity_min: 30
+ space_granularity_km: 10
+ use_all_features: True
+ meta_columns:
+  - hectokey_merged
+  - datetime
+
+features_temporal_config:
+ table_name: features_temporal_agg.temporal_feature_60min_v3
+ time_granularity_min: 60
+ use_all_features: True
+ meta_columns:
+  - datetime
+ 

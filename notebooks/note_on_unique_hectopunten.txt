@@ -1,0 +1,280 @@
+# Note on Hectopunten
+1. This is based on "58.1470.Re".
+2. If there's no tab before the column's name, it means that the information in that column DON'T CHANGE.  
+
+
+
+
+	id
+	id_jaar
+	key_jaar
+key
+	jaar
+wvk_id
+	wvk_begdat
+	hectomtrng
+hecto
+pos_tv_wol
+dvk_letter
+afstand
+coords_x1
+coords_x2
+pos_tv_wol_orig
+jte_id_beg
+jte_id_end
+wegbehsrt  
+wegnummer#########There are variations on how the info is presented (e.g. ##058 vs 058) We need to clean this!!
+wegdeelltr
+rpe_code
+bst_code
+admrichtng
+rijrichtng
+stt_naam
+wpsnaamnen
+gme_id
+gme_naam
+hnrstrlnks
+hnrstrrhts
+	e_hnr_lnks ####some row is NULL
+	e_hnr_rhts ####some row is NULL
+	l_hnr_lnks ####some row is NULL
+	l_hnr_rhts ####some row is NULL
+begafstand
+endafstand
+beginkm
+eindkm
+	wegbehcode
+	wegbehnaam 
+	distrcode ####this keeps changing!!!! 
+	distrnaam
+	dienstcode
+	dienstnaam
+wegtype
+wgtype_oms
+routeltr
+routenr
+routeltr2
+routenr2
+routeltr3 
+	routenr3 ####some row is NULL
+routeltr4
+	routenr4 ####some row is NULL
+wegnr_aw
+	zijde ####some row is NULL
+	wegnr_hmp ####some row is NULL
+weg
+a_n_weg
+weerstation
+	max_snelheid_6_19 ####some row is NULL
+	max_snelheid_19_6 ####some row is NULL
+adv_snelheid
+	max_snelheid_dynamisch ####some row is NULL
+	max_snelheid_overgang_6_19 ####some row is NULL
+	max_snelheid_overgang_19_6 ####some row is NULL
+	max_snelheid_verschil_6_19 ####some row is NULL
+	max_snelheid_verschil_19_6 ####some row is NULL
+bebouwde_kom
+convergentie
+convergentie_type
+convergentie_doseerinst
+divergentie
+divergentie_type
+doelgroepstrook
+doelgroepstrook_aant_dgk
+doelgroepstrook_aantal_min
+doelgroepstrook_aantal_max
+geluidsbeperking
+geluidsbeperking_afstand
+geluidsbeperking_hoogte
+inhaalverbod
+	kantstrook ####some row is NULL
+kruispunt
+kunstinweg
+kunstinweg_invent_oms
+kunstinweg_doorrijhoogte
+kunstoverweg
+kunstoverweg_invent_oms
+kunstoverweg_doorrijhoogte
+lichtmast
+mengstrook
+mengstrook_aantmsk
+mengstrook_aantal_min
+mengstrook_aantal_max
+portaal
+	rijbaan ####some row is NULL
+	rijstrook ####some row is NULL
+	rijstrook_aantal_min ####some row is NULL
+	rijstrook_aantal_max ####some row is NULL
+rijstrook_versmalling_verbreding
+rijstrooksignalering
+signalering
+spoorovergang
+	verharding ####some row is NULL
+verlichting
+voorrangsweg
+	middenberm ####some row is NULL
+	middenberm_pos_omschr ####some row is NULL
+	middenberm_afst_obst ####some row is NULL
+	buitenberm ####some row is NULL
+	buitenberm_pos_omschr ####some row is NULL
+buitenberm_afst_obst
+tussenberm
+tussenberm_pos_omschr
+tussenberm_afst_obst
+	wegcat_beleving ####some row is NULL
+	wegcat_formeel ####some row is NULL
+	weekdag_i24
+weekdag_l1_i24
+weekdag_l2_i24
+weekdag_l3_i24
+weekdag_aandeel_l1_personenautos
+weekdag_aandeel_l2_licht_vrachtverkeer
+weekdag_aandeel_l3_zwaar_vrachtverkeer
+	weekdag_uur_00
+	weekdag_uur_01
+	weekdag_uur_02
+	weekdag_uur_03
+	weekdag_uur_04
+	weekdag_uur_05
+	weekdag_uur_06
+	weekdag_uur_07
+	weekdag_uur_08
+	weekdag_uur_09
+	weekdag_uur_10
+	weekdag_uur_11
+	weekdag_uur_12
+	weekdag_uur_13
+	weekdag_uur_14
+	weekdag_uur_15
+	weekdag_uur_16
+	weekdag_uur_17
+	weekdag_uur_18
+	weekdag_uur_19
+	weekdag_uur_20
+	weekdag_uur_21
+	weekdag_uur_22
+	weekdag_uur_23
+	werkdag_i24
+	werkdag_l1_i24
+	werkdag_l2_i24
+	werkdag_l3_i24
+	werkdag_aandeel_l1_personenautos
+	werkdag_aandeel_l2_licht_vrachtverkeer
+	werkdag_aandeel_l3_zwaar_vrachtverkeer
+	werkdag_uur_00
+	werkdag_uur_01
+	werkdag_uur_02
+	werkdag_uur_03
+	werkdag_uur_04
+	werkdag_uur_05
+	werkdag_uur_06
+	werkdag_uur_07
+	werkdag_uur_08
+	werkdag_uur_09
+	werkdag_uur_10
+	werkdag_uur_11
+	werkdag_uur_12
+	werkdag_uur_13
+	werkdag_uur_14
+	werkdag_uur_15
+	werkdag_uur_16
+	werkdag_uur_17
+	werkdag_uur_18
+	werkdag_uur_19
+	werkdag_uur_20
+	werkdag_uur_21
+	werkdag_uur_22
+	werkdag_uur_23
+	ic_weekdag_uur_00
+	ic_weekdag_uur_01
+	ic_weekdag_uur_02
+	ic_weekdag_uur_03
+	ic_weekdag_uur_04
+	ic_weekdag_uur_05
+	ic_weekdag_uur_06
+	ic_weekdag_uur_07
+	ic_weekdag_uur_08
+	ic_weekdag_uur_09
+	ic_weekdag_uur_10
+	ic_weekdag_uur_11
+	ic_weekdag_uur_12
+	ic_weekdag_uur_13
+	ic_weekdag_uur_14
+	ic_weekdag_uur_15
+	ic_weekdag_uur_16
+	ic_weekdag_uur_17
+	ic_weekdag_uur_18
+	ic_weekdag_uur_19
+	ic_werkdag_uur_20
+	ic_werkdag_uur_21
+	ic_werkdag_uur_22
+	ic_werkdag_uur_23
+	mjpv_verharding ####some row is NULL
+	mjpv_verharding_leeftijd
+boogstraal
+dwarshelling
+boogstraal_categorie
+kompas_graden
+kompas
+bodem
+reclamemast_afstand
+afstand_bst_code_afr
+afstand_bst_code_opr
+afstand_bst_code_pst
+afstand_bst_code_parkeerplaats
+afstand_convergentie_type
+afstand_divergentie_type
+	afstand_kantstrook ####some row is NULL
+afstand_doelgroepstrook
+afstand_mengstrook
+afstand_kruispunt
+	afstand_kunstinweg ####some row is NULL
+afstand_kunstoverweg
+afstand_portaal
+afstand_spoorovergang
+afstand_bebouwde_kom
+afstand_rijstrook_verbreding
+afstand_rijstrook_versmalling
+afstand_boogstraal_categorie_0_100
+afstand_boogstraal_categorie_101_200
+afstand_boogstraal_categorie_201_300
+afstand_boogstraal_categorie_301_400
+afstand_boogstraal_categorie_401_500
+afstand_boogstraal_categorie_501_600
+afstand_boogstraal_categorie_601_700
+afstand_boogstraal_categorie_701_800
+afstand_boogstraal_categorie_801_900
+afstand_boogstraal_categorie_901_1000
+afstand_boogstraal_categorie_1001_5000
+afstand_boogstraal_categorie_5001_10000
+afstand_boogstraal_categorie_10001_25000
+afstand_boogstraal_categorie_25001_50000
+afstand_boogstraal_categorie_50001_75000
+	afstand_boogstraal_categorie_75001_inf
+geleiderails_count
+geleiderails_ids
+geleiderails_themas
+geleiderails_min_afst
+geleiderails_thema_min
+	kantobjecten_count
+	kantobjecten_ids ####some row is NULL
+	kantobjecten_themas ####some row is NULL
+	kantobjecten_min_afst ####some row is NULL
+	kantobjecten_thema_min ####some row is NULL
+kerngis_groen_count
+kerngis_groen_ids
+kerngis_groen_themas
+kerngis_groen_min_afst
+kerngis_groen_thema_min
+kerngis_water_count
+kerngis_water_ids
+kerngis_water_themas
+kerngis_water_min_afst
+kerngis_water_thema_min
+trees_within50m
+trees_within100m
+trees_within200m
+trees_within300m
+trees_within400m
+trees_within500m
+ranking

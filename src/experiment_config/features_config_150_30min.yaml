@@ -1,0 +1,141 @@
+features_flow_config:
+  features_list:
+  - speed_minxlanes_minxseg_15min_num
+  - speed_avgxlanes_diffprevrec_avgxseg_1hravg15min_num
+  - speedstd_maxxlanes_maxxseg_1hrmax15min_num
+  - speed_avgxlanes_maxxseg_1hravg15min_num
+  - speed_avgxlanes_diffloopbehind_maxxseg_15min_num
+  - flowstd_avgxlanes_avgxseg_15min_num
+  - speed_avgxlanes_diffloopbehind_avgxseg_1hrmax15min_num
+  - flow_totalxlanes_diffprevrec_maxxseg_1hravg15min_num
+  - flow_totalxlanes_maxdiffxseg_15min_num
+  - speed_avgxlanes_diffloopahead_maxxseg_15min_num
+  - speed_avgxlanes_diffprevrec_maxxseg_15min_num
+  - flow_totalxlanes_totalxseg_1hrmin15min_num
+  - flow_totalxlanes_totalxseg_maxdiffx1hr_num
+  - speed_avgxlanes_diffloopahead_avgxseg_1hravg15min_num
+  - flow_totalxlanes_diffprevrec_maxxseg_15min_num
+  - speed_avgxlanes_diffprevrec_avgxseg_15min_num
+  - speed_avgxlanes_diffprevrec_avgxseg_1hrmax15min_num
+  - flow_totalxlanes_diffprevrec_avgxseg_1hravg15min_num
+  - flow_totalxlanes_diffprevrec_avgxseg_15min_num
+  - flow_totalxlanes_diffloopbehind_maxxseg_1hravg15min_num
+  - flow_avgxlanes_minxseg_15min_num
+  - speed_maxdiffxlanes_maxxseg_15min_num
+  - flow_totalxlanes_diffloopbehind_avgxseg_1hrmax15min_num
+  - speed_avgxlanes_maxxseg_maxdiffx1hr_num
+  - flow_totalxlanes_diffloopahead_avgxseg_1hravg15min_num
+  - speed_maxdiffxlanes_avgxseg_1hrmax15min_num
+  meta_columns:
+  - end_datetime
+  - hectokey_merged
+  space_granularity_km: 10
+  table_name: features_speedflow_agg.fifteenmin_seg_ten_km_v1
+  time_granularity_min: 15
+  use_all_features: false
+features_hectopunten_config:
+  features_list:
+  - asphalt_age_avgxseg_num
+  - onramps_convergentie_or_bstcodeopr_totalxseg_num
+  - trees_within50m_avgxseg_num
+  - onramps_convergentie_or_bstcodeopr_perkm_num
+  - max_number_lanes_avgxseg_num
+  - distanceto_soundbarrier_perkm_num
+  - asphalt_age_maxxseg_num
+  - speedlim_night_avgxseg_num
+  - entrances_perkm_usingconvergentie_num
+  - offramps_divergentie_or_bstcodeafr_totalxseg_num
+  - tilt_minxseg_num
+  - asphalt_age_minxseg_num
+  - hectowith_parking_totalxseg_num
+  - hecto_withovertakingallowed_perkm_num
+  - billboards_perkm_num
+  - compass_dir_mode_cat
+  - speedlim_day_maxxseg_num
+  - speedlim_night_minxseg_num
+  - curvyroad_and_offramp_totalxseg_num
+  - entrance_type_mode_cat
+  - curvyroad_and_onramp_totalxseg_num
+  - includes_road_number_12_cat
+  - includes_road_number_28_cat
+  - has_lighting_cat
+  - exit_type_mode_cat
+  - hectowith_mergelanes_mode_cat
+  - hectowith_lanenarrowing_totalxseg_num
+  - lighting_mode_cat
+  meta_columns:
+  - hectokey_merged
+  - rollup_year
+  - weather_station
+  space_granularity_km: 10
+  table_name: features_hectopunten_agg.hectopunten_ten_km_v12
+  use_all_features: false
+features_knmi_config:
+  features_list:
+  - feature_last_snow_num
+  - feature_last_ice_num
+  - feature_last_thunderstorm_num
+  - feature_temp_16_mean_num
+  - feature_air_pressure_16_nanmax_num
+  - feature_humidity_8_nanmin_num
+  - feature_last_mist_num
+  - feature_humidity_1_ago_num
+  - feature_observability_16_mean_num
+  - feature_sun_duration_16_mean_num
+  - feature_last_rain_num
+  - feature_humidity_8_nanmax_num
+  - feature_humidity_16_nanmax_num
+  - feature_precip_duration_16_mean_num
+  - feature_avg_wind_speed_hr_16_nanmax_num
+  - feature_hourly_rain_8_nanmax_num
+  - feature_avg_wind_speed_hr_8_nanmin_num
+  - feature_hourly_rain_4_nanmax_num
+  - feature_cloud_cover_16_nanmin_num
+  - feature_sun_duration_16_nanmax_num
+  - feature_hourly_rain_normby_precip_duration_num
+  - feature_hourly_rain_2_ago_num
+  - feature_hourly_rain_3_ago_num
+  - feature_sun_duration_1_ago_num
+  - feature_sun_duration_4_nanmin_num
+  - feature_cloud_cover_2_ago_num
+  - feature_hourly_rain_4_ago_num
+  - feature_hourly_rain_2_nanmin_num
+  - feature_precip_duration_2_ago_num
+  - feature_precip_duration_1_ago_num
+  - feature_sun_duration_8_nanmin_num
+  - feature_precip_duration_4_ago_num
+  - feature_precip_duration_3_ago_num
+  - feature_hourly_rain_4_nanmin_num
+  - feature_hourly_rain_8_nanmin_num
+  meta_columns:
+  - datetime
+  - weather_station
+  table_name: features_knmi_agg.knmi_feature_master_v7
+  time_granularity_min: 60
+  use_all_features: false
+features_ongevallen_config:
+  features_list:
+  - accidents_past_16_num
+  - accidents_past_1_num
+  meta_columns:
+  - datetime
+  - hectokey_merged
+  space_granularity_km: 10
+  table_name: features_ongevallen_agg.ongevallen_feature_ten_km_thirty_min
+  time_granularity_min: 30
+  use_all_features: false
+features_temporal_config:
+  features_list:
+  - rushhour_cat
+  - eve_rushhour_cat
+  - month_cat
+  - morn_rushhour_cat
+  - week_of_year_cat
+  - hour_cat
+  - weekend_cat
+  - day_of_week_cat
+  meta_columns:
+  - datetime
+  table_name: features_temporal_agg.temporal_feature_30min_v1
+  time_granularity_min: 30
+  use_all_features: false

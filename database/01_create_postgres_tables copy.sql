@@ -1,0 +1,527 @@
+--- Create the tables to copy the data, currently stored in the directory, into Postgres.
+
+--- Schema: Rws_Raw
+
+--- Tables
+--- 	hectopunten: contains metadata for each hectopunt
+--- 	knmi_data: weather data
+--- 	knmi_station: contains metadata for weather station
+--- 	ongevallen: accident data
+---		speed and flow: speed and flow data from traffic loops
+---		NOTE: change the time resolution of the speed and flow data to the appropriate scale before running
+---				e.g. 15min, 1hr
+
+
+-- create the schema we will be using
+create schema if not exists rws_raw;
+
+
+--------------------Hectopunten_Raw
+drop table if exists rws_raw.hectopunten;
+CREATE TABLE rws_raw.hectopunten (
+		id VARCHAR , 
+		id_jaar VARCHAR , 
+		key_jaar VARCHAR , 
+		key VARCHAR , 
+		jaar DECIMAL , 
+		wvk_id DECIMAL , 
+		wvk_begdat DATE , 
+		hectomtrng DECIMAL , 
+		hecto VARCHAR , 
+		pos_tv_wol VARCHAR, 
+		dvk_letter VARCHAR, 
+		afstand DECIMAL , 
+		coords_x1 varchar , 
+		coords_x2 varchar , 
+		pos_tv_wol_orig VARCHAR , 
+		jte_id_beg DECIMAL , 
+		jte_id_end DECIMAL , 
+		wegbehsrt VARCHAR , 
+		wegnummer varchar , 
+		wegdeelltr VARCHAR , 
+		rpe_code VARCHAR , 
+		bst_code VARCHAR , 
+		admrichtng VARCHAR , 
+		rijrichtng VARCHAR, 
+		stt_naam VARCHAR , 
+		wpsnaamnen VARCHAR , 
+		gme_id DECIMAL , 
+		gme_naam VARCHAR , 
+		hnrstrlnks VARCHAR, 
+		hnrstrrhts varchar, -- edited 
+		e_hnr_lnks varchar, 
+		e_hnr_rhts varchar, 
+		l_hnr_lnks varchar, 
+		l_hnr_rhts varchar, 
+		begafstand varchar , 
+		endafstand DECIMAL , 
+		beginkm varchar , 
+		eindkm varchar , 
+		wegbehcode varchar , 
+		wegbehnaam VARCHAR , 
+		distrcode DECIMAL , 
+		distrnaam VARCHAR , 
+		dienstcode VARCHAR , 
+		dienstnaam VARCHAR , 
+		wegtype VARCHAR, 
+		wgtype_oms VARCHAR, 
+		routeltr VARCHAR, -- edited 
+		routenr varchar, -- edited
+		routeltr2 VARCHAR, -- edited
+		routenr2 varchar,  -- edited
+		routeltr3 varchar,  -- edited
+		routenr3 varchar,  -- edited
+		routeltr4 varchar,  -- edited
+		routenr4 varchar,  -- edited
+		wegnr_aw VARCHAR , 
+		zijde VARCHAR, 
+		wegnr_hmp VARCHAR , 
+		weg varchar , 
+		a_n_weg VARCHAR , 
+		weerstation DECIMAL , 
+		max_snelheid_6_19 DECIMAL, 
+		max_snelheid_19_6 DECIMAL, 
+		adv_snelheid varchar, -- edited 
+		max_snelheid_dynamisch varchar, 
+		max_snelheid_overgang_6_19 varchar, 
+		max_snelheid_overgang_19_6 varchar, 
+		max_snelheid_verschil_6_19 DECIMAL, 
+		max_snelheid_verschil_19_6 DECIMAL, 
+		bebouwde_kom varchar, -- edited
+		convergentie varchar, 
+		convergentie_type varchar, 
+		convergentie_doseerinst varchar, 
+		divergentie varchar,-- edited 
+		divergentie_type varchar, -- edited 
+		doelgroepstrook varchar, -- edited 
+		doelgroepstrook_aant_dgk varchar, -- edited 
+		doelgroepstrook_aantal_min varchar, 
+		doelgroepstrook_aantal_max varchar, 
+		geluidsbeperking VARCHAR, 
+		geluidsbeperking_afstand varchar, 
+		geluidsbeperking_hoogte varchar, 
+		inhaalverbod VARCHAR, 
+		kantstrook varchar, -- edited 
+		kruispunt VARCHAR, 
+		kunstinweg VARCHAR, 
+		kunstinweg_invent_oms VARCHAR, 
+		kunstinweg_doorrijhoogte varchar, 
+		kunstoverweg VARCHAR, 
+		kunstoverweg_invent_oms VARCHAR, 
+		kunstoverweg_doorrijhoogte varchar, 
+		lichtmast varchar, 
+		mengstrook varchar, 
+		mengstrook_aantmsk varchar, 
+		mengstrook_aantal_min varchar, 
+		mengstrook_aantal_max varchar, 
+		portaal VARCHAR, 
+		rijbaan VARCHAR, 
+		rijstrook VARCHAR, 
+		rijstrook_aantal_min DECIMAL, 
+		rijstrook_aantal_max DECIMAL, 
+		rijstrook_versmalling_verbreding VARCHAR, 
+		rijstrooksignalering VARCHAR, 
+		signalering VARCHAR, 
+		spoorovergang varchar, 
+		verharding VARCHAR, 
+		verlichting VARCHAR, 
+		voorrangsweg varchar, 
+		middenberm VARCHAR, 
+		middenberm_pos_omschr VARCHAR, 
+		middenberm_afst_obst varchar, 
+		buitenberm VARCHAR, 
+		buitenberm_pos_omschr VARCHAR, 
+		buitenberm_afst_obst varchar, 
+		tussenberm VARCHAR, 
+		tussenberm_pos_omschr VARCHAR, 
+		tussenberm_afst_obst varchar, 
+		wegcat_beleving VARCHAR, 
+		wegcat_formeel VARCHAR, 
+		weekdag_i24 varchar, 
+		weekdag_l1_i24 varchar, 
+		weekdag_l2_i24 varchar, 
+		weekdag_l3_i24 varchar, 
+		weekdag_aandeel_l1_personenautos varchar, -- edited 
+		weekdag_aandeel_l2_licht_vrachtverkeer varchar, -- edited
+		weekdag_aandeel_l3_zwaar_vrachtverkeer varchar, -- edited
+		weekdag_uur_00 varchar, 
+		weekdag_uur_01 varchar, 
+		weekdag_uur_02 varchar, 
+		weekdag_uur_03 varchar, 
+		weekdag_uur_04 varchar, 
+		weekdag_uur_05 varchar, 
+		weekdag_uur_06 varchar, 
+		weekdag_uur_07 varchar, 
+		weekdag_uur_08 varchar, 
+		weekdag_uur_09 varchar, 
+		weekdag_uur_10 varchar, 
+		weekdag_uur_11 varchar, 
+		weekdag_uur_12 varchar, 
+		weekdag_uur_13 varchar, 
+		weekdag_uur_14 varchar, 
+		weekdag_uur_15 varchar, 
+		weekdag_uur_16 varchar, 
+		weekdag_uur_17 varchar, 
+		weekdag_uur_18 varchar, 
+		weekdag_uur_19 varchar, 
+		weekdag_uur_20 varchar, 
+		weekdag_uur_21 varchar, 
+		weekdag_uur_22 varchar, 
+		weekdag_uur_23 varchar, 
+		werkdag_i24 varchar, 
+		werkdag_l1_i24 varchar, 
+		werkdag_l2_i24 varchar, 
+		werkdag_l3_i24 varchar, 
+		werkdag_aandeel_l1_personenautos varchar, 
+		werkdag_aandeel_l2_licht_vrachtverkeer varchar, 
+		werkdag_aandeel_l3_zwaar_vrachtverkeer varchar, 
+		werkdag_uur_00 varchar, 
+		werkdag_uur_01 varchar, 
+		werkdag_uur_02 varchar, 
+		werkdag_uur_03 varchar, 
+		werkdag_uur_04 varchar, 
+		werkdag_uur_05 varchar, 
+		werkdag_uur_06 varchar, 
+		werkdag_uur_07 varchar, 
+		werkdag_uur_08 varchar, 
+		werkdag_uur_09 varchar, 
+		werkdag_uur_10 varchar, 
+		werkdag_uur_11 varchar, 
+		werkdag_uur_12 varchar, 
+		werkdag_uur_13 varchar, 
+		werkdag_uur_14 varchar, 
+		werkdag_uur_15 varchar, 
+		werkdag_uur_16 varchar, 
+		werkdag_uur_17 varchar, 
+		werkdag_uur_18 varchar, 
+		werkdag_uur_19 varchar, 
+		werkdag_uur_20 varchar, 
+		werkdag_uur_21 varchar, 
+		werkdag_uur_22 varchar, 
+		werkdag_uur_23 varchar, 
+		ic_weekdag_uur_00 varchar, 
+		ic_weekdag_uur_01 varchar, 
+		ic_weekdag_uur_02 varchar, 
+		ic_weekdag_uur_03 varchar, 
+		ic_weekdag_uur_04 varchar, 
+		ic_weekdag_uur_05 varchar, 
+		ic_weekdag_uur_06 varchar, 
+		ic_weekdag_uur_07 varchar, 
+		ic_weekdag_uur_08 varchar, 
+		ic_weekdag_uur_09 varchar, 
+		ic_weekdag_uur_10 varchar, 
+		ic_weekdag_uur_11 varchar, 
+		ic_weekdag_uur_12 varchar, 
+		ic_weekdag_uur_13 varchar, 
+		ic_weekdag_uur_14 varchar, 
+		ic_weekdag_uur_15 varchar, 
+		ic_weekdag_uur_16 varchar, 
+		ic_weekdag_uur_17 varchar, 
+		ic_weekdag_uur_18 varchar, 
+		ic_weekdag_uur_19 varchar, 
+		ic_weekdag_uur_20 varchar, 
+		ic_weekdag_uur_21 varchar, 
+		ic_weekdag_uur_22 varchar, 
+		ic_weekdag_uur_23 varchar, 
+		ic_werkdag_uur_00 varchar, -- edited 
+		ic_werkdag_uur_01 varchar, 
+		ic_werkdag_uur_02 varchar, 
+		ic_werkdag_uur_03 varchar, 
+		ic_werkdag_uur_04 varchar, 
+		ic_werkdag_uur_05 varchar, -- edited
+		ic_werkdag_uur_06 varchar, -- edited
+		ic_werkdag_uur_07 varchar, -- edited
+		ic_werkdag_uur_08 varchar, -- edited
+		ic_werkdag_uur_09 varchar, -- edited
+		ic_werkdag_uur_10 varchar, -- edited
+		ic_werkdag_uur_11 varchar, -- edited
+		ic_werkdag_uur_12 varchar, -- edited
+		ic_werkdag_uur_13 varchar, -- edited
+		ic_werkdag_uur_14 varchar, -- edited
+		ic_werkdag_uur_15 varchar, -- edited
+		ic_werkdag_uur_16 varchar, -- edited
+		ic_werkdag_uur_17 varchar, -- edited
+		ic_werkdag_uur_18 varchar, -- edited
+		ic_werkdag_uur_19 varchar, -- edited
+		ic_werkdag_uur_20 varchar, -- edited
+		ic_werkdag_uur_21 varchar, -- edited
+		ic_werkdag_uur_22 varchar, -- edited
+		ic_werkdag_uur_23 varchar, -- edited 
+		mjpv_verharding varchar, 
+		mjpv_verharding_leeftijd varchar, 
+		boogstraal varchar, 
+		dwarshelling varchar, 
+		boogstraal_categorie varchar, 
+		kompas_graden varchar , -- edited 
+		kompas VARCHAR , 
+		bodem VARCHAR, 
+		reclamemast_afstand varchar, -- edited 
+		afstand_bst_code_afr DECIMAL, 
+		afstand_bst_code_opr DECIMAL, 
+		afstand_bst_code_pst DECIMAL, 
+		afstand_bst_code_parkeerplaats DECIMAL, 
+		afstand_convergentie_type varchar, --edited 
+		afstand_divergentie_type varchar, 
+		afstand_kantstrook varchar, -- edited 
+		afstand_doelgroepstrook varchar, -- edited 
+		afstand_mengstrook varchar, -- edited 
+		afstand_kruispunt DECIMAL, 
+		afstand_kunstinweg DECIMAL, 
+		afstand_kunstoverweg DECIMAL, 
+		afstand_portaal DECIMAL, 
+		afstand_spoorovergang varchar, 
+		afstand_bebouwde_kom varchar, 
+		afstand_rijstrook_verbreding DECIMAL, 
+		afstand_rijstrook_versmalling DECIMAL, 
+		afstand_boogstraal_categorie_0_100 varchar, 
+		afstand_boogstraal_categorie_101_200 varchar, 
+		afstand_boogstraal_categorie_201_300 varchar, 
+		afstand_boogstraal_categorie_301_400 varchar, 
+		afstand_boogstraal_categorie_401_500 varchar, 
+		afstand_boogstraal_categorie_501_600 varchar, 
+		afstand_boogstraal_categorie_601_700 varchar, 
+		afstand_boogstraal_categorie_701_800 varchar, 
+		afstand_boogstraal_categorie_801_900 varchar, 
+		afstand_boogstraal_categorie_901_1000 varchar, 
+		afstand_boogstraal_categorie_1001_5000 varchar, 
+		afstand_boogstraal_categorie_5001_10000 varchar, 
+		afstand_boogstraal_categorie_10001_25000 varchar, 
+		afstand_boogstraal_categorie_25001_50000 varchar, 
+		afstand_boogstraal_categorie_50001_75000 varchar, 
+		afstand_boogstraal_categorie_75001_inf varchar, 
+		geleiderails_count DECIMAL , 
+		geleiderails_ids varchar, 
+		geleiderails_themas VARCHAR, 
+		geleiderails_min_afst varchar, 
+		geleiderails_thema_min VARCHAR, 
+		kantobjecten_count DECIMAL , 
+		kantobjecten_ids varchar, --edited 
+		kantobjecten_themas VARCHAR, 
+		kantobjecten_min_afst varchar, -- edited 
+		kantobjecten_thema_min VARCHAR, 
+		kerngis_groen_count DECIMAL , 
+		kerngis_groen_ids varchar, -- edited 
+		kerngis_groen_themas VARCHAR, 
+		kerngis_groen_min_afst varchar, 
+		kerngis_groen_thema_min VARCHAR, 
+		kerngis_water_count DECIMAL , 
+		kerngis_water_ids varchar, 
+		kerngis_water_themas VARCHAR, 
+		kerngis_water_min_afst varchar, 
+		kerngis_water_thema_min VARCHAR, 
+		trees_within50m DECIMAL , 
+		trees_within100m DECIMAL , 
+		trees_within200m DECIMAL , 
+		trees_within300m DECIMAL , 
+		trees_within400m DECIMAL , 
+		trees_within500m DECIMAL 
+	);
+	
+	
+--------------------KNMI Weather
+drop table if exists rws_raw.knmi_data;
+CREATE TABLE rws_raw.knmi_data (
+	"STN" DECIMAL,
+	"YYYYMMDD" DATE,
+	"HH" DECIMAL,
+	"DD" DECIMAL,
+	"FH" DECIMAL,
+	"FF" DECIMAL,
+	"FX" DECIMAL,
+	"T" DECIMAL,
+	"T10" DECIMAL,
+	"TD" DECIMAL,
+	"SQ" DECIMAL,
+	"Q" DECIMAL,
+	"DR" DECIMAL,
+	"RH" DECIMAL,
+	"P" DECIMAL,
+	"VV" DECIMAL,
+	"N" DECIMAL,
+	"U" DECIMAL,
+	"WW" DECIMAL,
+	"IX" DECIMAL,
+	"M" BOOLEAN,
+	"R" BOOLEAN,
+	"S" BOOLEAN,
+	"O" BOOLEAN,
+	"Y" BOOLEAN
+);
+
+drop table if exists rws_raw.knmi_station;
+CREATE TABLE  rws_raw.knmi_station (
+	"STN" integer PRIMARY KEY NOT NULL,
+	"LON(east)" float NOT NULL,
+	"LAT(north)" float NOT NULL,
+	"ALT(m)" DECIMAL NOT NULL,
+	"NAME" VARCHAR NOT NULL
+);
+
+
+--------------------Ongevallen
+drop table if exists rws_raw.ongevallen;
+CREATE TABLE rws_raw.ongevallen(
+	id_jaar VARCHAR, 
+	ongeval_id VARCHAR, 
+	bron VARCHAR, 
+	datumtijd TIMESTAMP WITHOUT TIME ZONE, 
+	uur VARCHAR, 
+	dag VARCHAR, 
+	maand VARCHAR, 
+	jaar VARCHAR, 
+	bps_key VARCHAR, 
+	wvkid_begdat_hecto_key VARCHAR, 
+	rijrichting VARCHAR, 
+	coords_x VARCHAR, 
+	coords_y VARCHAR, 
+	afloop VARCHAR, 
+	key VARCHAR, 
+	weg VARCHAR, 
+	hecto VARCHAR, 
+	hectomtrng VARCHAR, 
+	dvk_letter VARCHAR, 
+	pos_tv_wol VARCHAR,
+	PRIMARY KEY (ongeval_id)
+);
+
+--------------------Flow and Speed Data
+DROP TABLE rws_raw.speed_1hr_resolution;
+DROP TABLE rws_raw.flow_1hr_resolution;
+
+
+CREATE TABLE rws_raw.speed_1hr_resolution(
+	"measurementSiteReference" VARCHAR NOT NULL, 
+	"measurementSiteVersion" VARCHAR NOT NULL, 
+	index VARCHAR NOT NULL, 
+	"periodStart" TIMESTAMP WITHOUT TIME ZONE, 
+	"periodEnd" TIMESTAMP WITHOUT TIME ZONE, 
+	"numberOfIncompleteInputs" VARCHAR, 
+	"numberOfInputValuesused" VARCHAR NOT NULL, 
+	"minutesUsed" VARCHAR, 
+	"computationalMethod" VARCHAR, 
+	"standardDeviation" decimal, 
+	"supplierCalculatedDataQuality" VARCHAR, 
+	"sCDQ_Low" VARCHAR, 
+	"sCDQ_SD" VARCHAR, 
+	"number_of_sCDQ" VARCHAR, 
+	"dataError" VARCHAR NOT NULL, 
+	"travelTimeType" VARCHAR, 
+	"avgVehicleFlow" decimal, 
+	"avgVehicleSpeed" decimal NOT NULL, 
+	"avgTravelTime" VARCHAR, 
+	"computationMethod" VARCHAR NOT NULL, 
+	"measurementEquipmentTypeUsed" VARCHAR NOT NULL, 
+	"measurementSiteName1" VARCHAR NOT NULL, 
+	"measurementSiteName2" VARCHAR, 
+	"measurementSiteNumberOfLanes" VARCHAR NOT NULL, 
+	"measurementSiteIdentification" VARCHAR, 
+	"measurementSide" VARCHAR, 
+	accuracy VARCHAR NOT NULL, 
+	period VARCHAR NOT NULL, 
+	"specificLane" VARCHAR NOT NULL, 
+	"specificVehicleCharacteristics" VARCHAR NOT NULL, 
+	"startLocatieForDisplayLat" VARCHAR NOT NULL, 
+	"startLocatieForDisplayLong" VARCHAR NOT NULL, 
+	"LocationCountryCode" VARCHAR NOT NULL, 
+	"LocationTableNumber" VARCHAR NOT NULL, 
+	"LocationTableVersion" VARCHAR NOT NULL, 
+	"alertCDirectionCoded" VARCHAR NOT NULL, 
+	"specificLocation" VARCHAR NOT NULL, 
+	"offsetDistance" VARCHAR NOT NULL, 
+	"LOC_TYPE" VARCHAR NOT NULL, 
+	"LOC_DES" VARCHAR NOT NULL, 
+	"ROADNUMBER" VARCHAR NOT NULL, 
+	"ROADNAME" VARCHAR, 
+	"FIRST_NAME" VARCHAR NOT NULL, 
+	"SECND_NAME" VARCHAR, 
+	"messageType" VARCHAR, 
+	"publicationTime" VARCHAR, 
+	"deducedNoTrafficMinutes" VARCHAR NOT NULL, 
+	carriageway VARCHAR NOT NULL, 
+	"generatedSiteName" VARCHAR NOT NULL, 
+	voorganger VARCHAR, 
+	opvolger VARCHAR, 
+	"reasonForDataError" VARCHAR, 
+	"openlrCoordinateLatitude" VARCHAR, 
+	"openlrCoordinateLongitude" VARCHAR, 
+	"openlrSideOfRoad" VARCHAR, 
+	"openlrOrientation" VARCHAR, 
+	"openlrPositiveOffset" VARCHAR, 
+	"openlrReferencePointCoordinateLatitudes" VARCHAR, 
+	"openlrReferencePointCoordinateLongitudes" VARCHAR, 
+	"openlrReferencePointFunctionalRoadClasses" VARCHAR, 
+	"openlrReferencePointFormOfWays" VARCHAR, 
+	"openlrReferencePointBearings" VARCHAR, 
+	"openlrReferencePointLowestFRCToNextLRPoints" VARCHAR, 
+	"openlrReferencePointDistanceToNextLRPoints" VARCHAR
+);
+
+CREATE TABLE rws_raw.flow_1hr_resolution (
+	"measurementSiteReference" VARCHAR NOT NULL, 
+	"measurementSiteVersion" varchar NOT NULL, 
+	index VARCHAR NOT NULL,  
+	"periodStart" TIMESTAMP WITHOUT TIME ZONE, 
+	"periodEnd" TIMESTAMP WITHOUT TIME ZONE, 
+	"numberOfIncompleteInputs" varchar, 
+	"numberOfInputValuesused" varchar NOT NULL, 
+	"minutesUsed" varchar, 
+	"computationalMethod" varchar, 
+	"standardDeviation" decimal, 
+	"supplierCalculatedDataQuality" varchar, 
+	"sCDQ_Low" varchar, 
+	"sCDQ_SD" varchar, 
+	"number_of_sCDQ" varchar, 
+	"dataError" varchar NOT NULL, 
+	"travelTimeType" varchar, 
+	"avgVehicleFlow" decimal NOT NULL, 
+	"avgVehicleSpeed" decimal, 
+	"avgTravelTime" varchar, 
+	"computationMethod" VARCHAR NOT NULL, 
+	"measurementEquipmentTypeUsed" VARCHAR NOT NULL, 
+	"measurementSiteName1" VARCHAR NOT NULL, 
+	"measurementSiteName2" varchar, 
+	"measurementSiteNumberOfLanes" varchar NOT NULL, 
+	"measurementSiteIdentification" varchar, 
+	"measurementSide" VARCHAR, 
+	accuracy varchar NOT NULL, 
+	period varchar NOT NULL, 
+	"specificLane" VARCHAR NOT NULL, 
+	"specificVehicleCharacteristics" VARCHAR NOT NULL, 
+	"startLocatieForDisplayLat" varchar NOT NULL, 
+	"startLocatieForDisplayLong" varchar NOT NULL, 
+	"LocationCountryCode" varchar NOT NULL, 
+	"LocationTableNumber" varchar NOT NULL, 
+	"LocationTableVersion" VARCHAR NOT NULL, 
+	"alertCDirectionCoded" VARCHAR NOT NULL, 
+	"specificLocation" varchar NOT NULL, 
+	"offsetDistance" varchar NOT NULL, 
+	"LOC_TYPE" VARCHAR NOT NULL, 
+	"LOC_DES" VARCHAR NOT NULL, 
+	"ROADNUMBER" VARCHAR NOT NULL, 
+	"ROADNAME" VARCHAR, 
+	"FIRST_NAME" VARCHAR NOT NULL, 
+	"SECND_NAME" VARCHAR, 
+	"messageType" varchar, 
+	"publicationTime" varchar, 
+	"deducedNoTrafficMinutes" varchar NOT NULL, 
+	carriageway VARCHAR NOT NULL, 
+	"Aandachtsoordeel" VARCHAR NOT NULL, 
+	"AandachtsoordeelCategorieen" VARCHAR NOT NULL, 
+	"generatedSiteName" VARCHAR NOT NULL, 
+	voorganger varchar, 
+	opvolger varchar, 
+	"reasonForDataError" VARCHAR, 
+	"openlrCoordinateLatitude" varchar, 
+	"openlrCoordinateLongitude" varchar, 
+	"openlrSideOfRoad" varchar, 
+	"openlrOrientation" varchar, 
+	"openlrPositiveOffset" varchar, 
+	"openlrReferencePointCoordinateLatitudes" varchar, 
+	"openlrReferencePointCoordinateLongitudes" varchar, 
+	"openlrReferencePointFunctionalRoadClasses" varchar, 
+	"openlrReferencePointFormOfWays" varchar, 
+	"openlrReferencePointBearings" varchar, 
+	"openlrReferencePointLowestFRCToNextLRPoints" varchar, 
+	"openlrReferencePointDistanceToNextLRPoints" varchar
+);
+

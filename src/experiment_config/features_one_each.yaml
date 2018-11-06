@@ -1,0 +1,51 @@
+features_flow_config:
+  features_list:
+  - speed_minxlanes_minxseg_15min_num
+  meta_columns:
+  - end_datetime
+  - hectokey_merged
+  space_granularity_km: 10
+  table_name: features_speedflow_agg.fifteenmin_seg_ten_km_v1
+  time_granularity_min: 15
+  use_all_features: false
+
+features_hectopunten_config:
+  features_list:
+  - asphalt_age_avgxseg_num
+  meta_columns:
+  - hectokey_merged
+  - rollup_year
+  - weather_station
+  space_granularity_km: 10
+  table_name: features_hectopunten_agg.hectopunten_ten_km_v12
+  use_all_features: false
+
+features_knmi_config:
+  features_list:
+  - feature_last_snow_num
+  meta_columns:
+  - datetime
+  - weather_station
+  table_name: features_knmi_agg.knmi_feature_master_v7
+  time_granularity_min: 60
+  use_all_features: false
+
+features_ongevallen_config:
+  features_list:
+  - accidents_past_16_num
+  meta_columns:
+  - datetime
+  - hectokey_merged
+  space_granularity_km: 10
+  table_name: features_ongevallen_agg.ongevallen_feature_ten_km_thirty_min
+  time_granularity_min: 30
+  use_all_features: false
+
+features_temporal_config:
+  features_list:
+  - rushhour_cat
+  meta_columns:
+  - datetime
+  table_name: features_temporal_agg.temporal_feature_60min_v3
+  time_granularity_min: 60
+  use_all_features: false

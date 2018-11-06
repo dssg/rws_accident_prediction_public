@@ -1,0 +1,4 @@
+# project root path, set as location of current file
+export RWS_ACCIDENT_PREDICTION_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+export PYTHONPATH=$PYTHONPATH:$RWS_ACCIDENT_PREDICTION_DIR"/src"

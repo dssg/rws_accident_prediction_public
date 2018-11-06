@@ -1,0 +1,47 @@
+features_knmi_config:
+ table_name: features_knmi_agg.knmi_feature_master_v7
+ time_granularity_min: 60
+ use_all_features: False
+ meta_columns:
+  - datetime
+  - weather_station
+ features_list:
+  - feature_temp_16_nanmax_num
+ 
+
+features_flow_config:
+ table_name: features_speedflow_agg.fifteenmin_seg_ten_km_v1
+ time_granularity_min: 15
+ space_granularity_km: 10
+ use_all_features: False
+ features_list:
+  - flow_totalxlanes_totalxseg_maxdiffx1hr_num
+ meta_columns:
+  - end_datetime
+  - hectokey_merged
+
+features_hectopunten_config:
+ table_name: features_hectopunten_agg.hectopunten_ten_km_v12
+ space_granularity_km: 10
+ use_all_features: True
+ meta_columns:
+  - hectokey_merged
+  - rollup_year
+  - weather_station
+
+features_ongevallen_config:
+ table_name: features_ongevallen_agg.ongevallen_feature_ten_km_thirty_min
+ time_granularity_min: 30
+ space_granularity_km: 10
+ use_all_features: True
+ meta_columns:
+  - hectokey_merged
+  - datetime
+
+features_temporal_config:
+ table_name: features_temporal_agg.temporal_feature_60min_v3
+ time_granularity_min: 60
+ use_all_features: True
+ meta_columns:
+  - datetime
+ 
